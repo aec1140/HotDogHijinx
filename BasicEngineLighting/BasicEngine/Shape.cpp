@@ -4,6 +4,7 @@ using namespace std;
 #include"ShaderHelper.h"
 #include<glm/gtc/matrix_transform.hpp>
 #include<SOIL.h>
+#include<iostream>
 using namespace glm;
 
 //Constructor/Destructor
@@ -55,7 +56,7 @@ Shape::Shape(char* modelFile, int index)
 	glEnableVertexAttribArray(2);
 
 	//Load texture
-	textureID = SOIL_load_OGL_texture("archer.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	textureID = SOIL_load_OGL_texture("ween.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	//Get the location of world matrix
@@ -72,6 +73,7 @@ Shape::~Shape(void)
 //Methods
 void Shape::draw(vec3 currPos, vec3 scaling, vec3 rotAx, float rotAm, mat4* camMat)
 {
+
 	//Gen transform matrix
 	mat4 transform = mat4();
 	transform = translate(transform, currPos);
@@ -87,6 +89,13 @@ void Shape::draw(vec3 currPos, vec3 scaling, vec3 rotAx, float rotAm, mat4* camM
 	//Bind array
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
+	cout << rotAm << endl;
+
 	//Draw elements
 	glDrawElements(GL_TRIANGLES, elements.size() * NUMFLOATS, GL_UNSIGNED_INT, (void*)0);
+}
+
+vector<vec3> Shape::getVert()
+{
+	return verticies;
 }

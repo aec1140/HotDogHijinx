@@ -6,7 +6,7 @@ public:
 	Entity(void);
 	Entity(Shape* s, vec3 pos, vec3 scalVec, float rotRat);
 	~Entity(void);
-	void update(float dt);
+	virtual void update(float dt);
 	void draw(mat4* camMat);
 	void setPos(vec3 pos);
 	void setScale(vec3 scaleVec);
@@ -18,15 +18,17 @@ public:
 	void bounce(bool up);
 	void setVelocity(vec3 vel);
 	void setRotRate(float rotRate);
-private:
+
+protected:
 	Shape* shape;
 	vec3 position;
 	vec3 velocity;
 	vec3 acceleration;
 	vec3 scale;
 	vec3 rotAx;
-	float rotAm;
 	float rotRate;
 	bool active;
+	float rotAm;
+
 };
 

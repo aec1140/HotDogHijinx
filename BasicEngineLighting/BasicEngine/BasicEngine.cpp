@@ -6,6 +6,7 @@
 #include<glfw3.h>
 #include"ShaderHelper.h"
 #include"Entity.h"
+#include"Player.h"
 #include<vector>
 #include<time.h>
 #include"Camera.h"
@@ -20,6 +21,7 @@ GLFWwindow* windowPtr;
 int result;
 vector<Entity*> entities;
 Shape* monkey;
+Player* p;
 Camera* playerCam;
 bool mouseButtonHeld;
 bool wHeld;
@@ -63,13 +65,20 @@ int initialize()
 	if (result != 0) glUseProgram(result);
 
 	//Create Model entity
-	monkey = new Shape("monkey2.obj", result);
-	entities.push_back(new Entity(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), 0.0f));
+	monkey = new Shape("Dog.obj", result);
+	p = new Player(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f), 0.0f);
+
+	playerCam = new Camera(vec3(0.0f, 0.0f, 0.0f), 0.0288, 0.9645);
+	p->setCam(playerCam);
+
+	entities.push_back(p);
 	entities[0]->setActive(true);
 
 	//Create camera
-	playerCam = new Camera(vec3(0, 0, 1), 0.f, PI/2);
+	//playerCam = new Camera(vec3(1.27447f, 20.8747, -18.2956), 0.0288, 0.9645); /* Starting Values Behind OBJ */
 	glfwSetInputMode(windowPtr, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -88,6 +97,7 @@ void update()
 	prevTime = curTime;
 
 	//Update
+
 	vec3 g = vec3(0.0f, -0.1f, 0.0f);
 	for (uint i = 0; i < entities.size(); i++)
 	{
@@ -98,25 +108,34 @@ void update()
 			entities[i]->update(dt);
 		}
 
-		//Move camera
-		vec3 newPos = playerCam->getLocation();
+		//Move player
 		if (wHeld)
 		{
-			newPos += playerCam->getLookDir() * .05f;
+			p->addForce(p->getForward() * .5f);
+			
+		}
+		else if (sHeld)
+		{
+			p->addForce(p->getForward() * -.5f);			
+		}
+		else
+		{
+			p->setVelocity(vec3(0.0f, 0.0f, 0.0f));
 		}
 		if (aHeld)
 		{
-			newPos += playerCam->getRight() * -.05f;
+			p->setRotRate(-0.5f);
 		}
-		if (sHeld)
+		else if (dHeld)
 		{
-			newPos += playerCam->getLookDir() * -.05f;
+			p->setRotRate(0.5f);
 		}
-		if (dHeld)
+		else
 		{
-			newPos += playerCam->getRight() * .05f;
+			p->setRotRate(0.0f);
 		}
-		playerCam->setPosition(newPos);
+
+		cout << p->getPos().x << "," << p->getPos().y << "," << p->getPos().z << endl;
 	}
 }
 
@@ -127,7 +146,10 @@ void draw()
 
 	//Draw triangles
 	mat4 perspecMat = perspective(PI/3.f, 1.0f, 0.01f, 1000.0f);
-	mat4 lookMat = lookAt(playerCam->getLocation(), playerCam->getLookAt(), vec3(0.0f,1.0f,0.0f));
+	vec3 camSpot = playerCam->getLocation() + (playerCam->getForward() * -1.0f * 18.3399f) + vec3(0.0f, 1.0f, 0.0f) * 20.8747f;
+	mat4 lookMat = lookAt(camSpot, p->getPos() , vec3(0.0f, 1.0f, 0.0f));
+
+	
 
 	mat4 camMat = perspecMat * lookMat;
 	for (uint i = 0; i < entities.size(); i++)
@@ -204,17 +226,17 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
 void cursorCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	//Get Cursor Position and Window size
-	int width, height;
-	glfwGetWindowSize(window, &width, &height);
+	////Get Cursor Position and Window size
+	//int width, height;
+	//glfwGetWindowSize(window, &width, &height);
 
-	//Convert coordinates
-	xpos = (2 * xpos / width) - 1;
-	ypos = -(2 * ypos / height) + 1;
+	////Convert coordinates
+	//xpos = (2 * xpos / width) - 1;
+	//ypos = -(2 * ypos / height) + 1;
 
-	playerCam->turn(xpos, ypos);
+	//playerCam->turn(xpos, ypos);
 
-	glfwSetCursorPos(windowPtr, width / 2, height / 2);
+	//glfwSetCursorPos(windowPtr, width / 2, height / 2);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
