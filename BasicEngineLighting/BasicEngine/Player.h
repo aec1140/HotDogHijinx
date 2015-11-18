@@ -10,7 +10,6 @@ public:
 	void update(float dt);
 	void setCam(Camera* c);
 	vec3 getForward();
-	void setCenter(vector<vec3> vert);
 private:
 	Camera* cam;
 	vec3 center;

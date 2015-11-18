@@ -12,7 +12,7 @@ Shape::Shape(void)
 {
 }
 
-Shape::Shape(char* modelFile, int index)
+Shape::Shape(char* modelFile, char* texture, int index)
 {
 	shader = index;
 
@@ -56,7 +56,7 @@ Shape::Shape(char* modelFile, int index)
 	glEnableVertexAttribArray(2);
 
 	//Load texture
-	textureID = SOIL_load_OGL_texture("ween.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	textureID = SOIL_load_OGL_texture(texture, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	//Get the location of world matrix

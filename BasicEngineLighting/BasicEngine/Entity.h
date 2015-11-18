@@ -18,8 +18,11 @@ public:
 	void bounce(bool up);
 	void setVelocity(vec3 vel);
 	void setRotRate(float rotRate);
+	vec3 getCenter();
+	float getRotateAmt();
 
 protected:
+	vec3 center;
 	Shape* shape;
 	vec3 position;
 	vec3 velocity;
@@ -29,6 +32,8 @@ protected:
 	float rotRate;
 	bool active;
 	float rotAm;
+
+	void setCenter(vector<vec3> vert);
 
 };
 

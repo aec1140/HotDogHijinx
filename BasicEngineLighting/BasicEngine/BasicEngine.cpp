@@ -21,14 +21,18 @@ GLFWwindow* windowPtr;
 int result;
 vector<Entity*> entities;
 Shape* monkey;
+Shape* plane;
 Player* p;
 Camera* playerCam;
+Entity* ground;
 bool mouseButtonHeld;
 bool wHeld;
 bool aHeld;
 bool sHeld;
 bool dHeld;
 double prevTime;
+
+const float turnSpeed = 0.9f;
 
 //Set up OGL
 int initialize()
@@ -65,14 +69,18 @@ int initialize()
 	if (result != 0) glUseProgram(result);
 
 	//Create Model entity
-	monkey = new Shape("Dog.obj", result);
-	p = new Player(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f), 0.0f);
+	monkey = new Shape("Dog.obj", "ween.png", result);
+	plane = new Shape("plane.obj", "tile.jpg", result);
 
-	playerCam = new Camera(vec3(0.0f, 0.0f, 0.0f), 0.0288, 0.9645);
+	p = new Player(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f), 0.0f);
+	playerCam = new Camera(p->getCenter(), 0.0, 0.9645);
 	p->setCam(playerCam);
 
 	entities.push_back(p);
+	ground = new Entity(plane, vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), 0.0f);
+	//entities.push_back(ground);
 	entities[0]->setActive(true);
+	//entities[1]->setActive(true);
 
 	//Create camera
 	//playerCam = new Camera(vec3(1.27447f, 20.8747, -18.2956), 0.0288, 0.9645); /* Starting Values Behind OBJ */
@@ -124,11 +132,11 @@ void update()
 		}
 		if (aHeld)
 		{
-			p->setRotRate(-0.5f);
+			p->setRotRate(turnSpeed);
 		}
 		else if (dHeld)
 		{
-			p->setRotRate(0.5f);
+			p->setRotRate(-turnSpeed);
 		}
 		else
 		{
@@ -137,6 +145,9 @@ void update()
 
 		cout << p->getPos().x << "," << p->getPos().y << "," << p->getPos().z << endl;
 	}
+
+	// Update Camera
+
 }
 
 void draw()
@@ -226,17 +237,17 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 
 void cursorCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	////Get Cursor Position and Window size
-	//int width, height;
-	//glfwGetWindowSize(window, &width, &height);
+	//Get Cursor Position and Window size
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
 
-	////Convert coordinates
-	//xpos = (2 * xpos / width) - 1;
-	//ypos = -(2 * ypos / height) + 1;
+	//Convert coordinates
+	xpos = (2 * xpos / width) - 1;
+	ypos = -(2 * ypos / height) + 1;
 
-	//playerCam->turn(xpos, ypos);
+	playerCam->turn(xpos, ypos);
 
-	//glfwSetCursorPos(windowPtr, width / 2, height / 2);
+	glfwSetCursorPos(windowPtr, width / 2, height / 2);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
