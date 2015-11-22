@@ -45,6 +45,10 @@ Shape::Shape(char* modelFile, char* texture, int index)
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
+	//Load texture
+	textureID = SOIL_load_OGL_texture(texture, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
 	//Enter data
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GL_FLOAT) * vertexData.size(), &vertexData[0], GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * elementData.size(), &elementData[0], GL_STATIC_DRAW);
@@ -54,10 +58,6 @@ Shape::Shape(char* modelFile, char* texture, int index)
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
-
-	//Load texture
-	textureID = SOIL_load_OGL_texture(texture, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	//Get the location of world matrix
 	worldMatLoc = glGetUniformLocation(index, "worldMatrix");
@@ -78,7 +78,7 @@ void Shape::draw(vec3 currPos, vec3 scaling, vec3 rotAx, float rotAm, mat4* camM
 	mat4 transform = mat4();
 	transform = translate(transform, currPos);
 	transform = scale(transform, scaling);
-	transform = rotate(transform, rotAm, rotAx);
+	transform = rotate(transform, -rotAm, rotAx);
 
 	//Matrix multiplication is associative!! :D
 	transform = (*camMat) * transform;

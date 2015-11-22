@@ -71,16 +71,17 @@ int initialize()
 	//Create Model entity
 	monkey = new Shape("Dog.obj", "ween.png", result);
 	plane = new Shape("plane.obj", "tile.jpg", result);
+	
 
 	p = new Player(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f), 0.0f);
 	playerCam = new Camera(p->getCenter(), 0.0, 0.9645);
 	p->setCam(playerCam);
 
 	entities.push_back(p);
-	ground = new Entity(plane, vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f), 0.0f);
-	//entities.push_back(ground);
+	ground = new Entity(plane, vec3(0.0f, 0.0f, 0.0f), vec3(10.0f, 10.0f, 10.0f), 0.0f);
+	entities.push_back(ground);
 	entities[0]->setActive(true);
-	//entities[1]->setActive(true);
+	entities[1]->setActive(true);
 
 	//Create camera
 	//playerCam = new Camera(vec3(1.27447f, 20.8747, -18.2956), 0.0288, 0.9645); /* Starting Values Behind OBJ */
@@ -132,11 +133,11 @@ void update()
 		}
 		if (aHeld)
 		{
-			p->setRotRate(turnSpeed);
+			p->setRotRate(-turnSpeed);
 		}
 		else if (dHeld)
 		{
-			p->setRotRate(-turnSpeed);
+			p->setRotRate(turnSpeed);
 		}
 		else
 		{
@@ -166,11 +167,13 @@ void draw()
 	for (uint i = 0; i < entities.size(); i++)
 	{
 		if (entities[i]->getActive() == true)
+		{
 			entities[i]->draw(&camMat);
+		}
 	}
 
-	//Flush
-	glFlush();
+	// Flush
+	glFlush();	
 }
 
 //Input callbacks
