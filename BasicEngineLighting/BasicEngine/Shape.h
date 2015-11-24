@@ -17,6 +17,7 @@ public:
 private:
 	static const int NUMFLOATS = 8;
 	GLuint vbo;
+	GLuint vao;
 	GLuint ebo;
 	vector<vec3> verticies;
 	vector<vec3> normals;

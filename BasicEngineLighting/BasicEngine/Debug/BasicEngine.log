@@ -1,12 +1,10 @@
-﻿Build started 11/22/2015 3:41:43 PM.
-     1>Project "E:\HotDog\BasicEngineLighting\BasicEngine\BasicEngine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11/24/2015 12:18:09 PM.
+     1>Project "Z:\DSA2\HotDogHijinx\BasicEngineLighting\BasicEngine\BasicEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt BasicEngine.cpp
-         BasicEngine.cpp
-     1>e:\hotdog\basicenginelighting\basicengine\basicengine.cpp(77): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>e:\hotdog\basicenginelighting\basicengine\basicengine.cpp(251): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Shape.cpp
+         Shape.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\HotDog\BasicEngineLighting\Debug\BasicEngine.exe" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib opengl32.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\HotDog\BasicEngineLighting\Debug\BasicEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\HotDog\BasicEngineLighting\Debug\BasicEngine.lib" /MACHINE:X86 Debug\BasicEngine.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\BasicEngine.exe" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib opengl32.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\BasicEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\BasicEngine.lib" /MACHINE:X86 Debug\BasicEngine.obj
          Debug\Camera.obj
          Debug\Entity.obj
          Debug\Player.obj
@@ -19,13 +17,13 @@
      1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          Generating code
          Finished generating code
-     1>SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'E:\HotDog\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
-     1>SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'E:\HotDog\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
-     1>SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'E:\HotDog\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
-     1>SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'E:\HotDog\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
-         BasicEngine.vcxproj -> E:\HotDog\BasicEngineLighting\Debug\BasicEngine.exe
-     1>Done Building Project "E:\HotDog\BasicEngineLighting\BasicEngine\BasicEngine.vcxproj" (Build target(s)).
+     1>SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
+     1>SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
+     1>SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
+     1>SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\SOIL.pdb'; linking object as if no debug info
+         BasicEngine.vcxproj -> Z:\DSA2\HotDogHijinx\BasicEngineLighting\Debug\BasicEngine.exe
+     1>Done Building Project "Z:\DSA2\HotDogHijinx\BasicEngineLighting\BasicEngine\BasicEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:32.46
+Time Elapsed 00:00:04.79

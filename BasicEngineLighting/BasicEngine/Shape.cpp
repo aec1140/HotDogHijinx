@@ -39,6 +39,10 @@ Shape::Shape(char* modelFile, char* texture, int index)
 		elementData.push_back(i);
 	}
 
+	//VAO
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	//Create vbo and ebo
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -87,7 +91,8 @@ void Shape::draw(vec3 currPos, vec3 scaling, vec3 rotAx, float rotAm, mat4* camM
 	setShaderMatrix(shader, worldMatLoc, transform);
 
 	//Bind array
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBindVertexArray(vao);
+	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	cout << rotAm << endl;
 
