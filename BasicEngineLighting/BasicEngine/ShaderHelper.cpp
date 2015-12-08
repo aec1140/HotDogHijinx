@@ -169,7 +169,7 @@ int loadOBJFile(const char* file, vector<vec3> &verticies, vector<vec3> &normals
 			//Push vec4 onto vector
 			normals.push_back(v);
 		}
-		if (line.substr(0,3) =="vt ")
+		else if (line.substr(0,3) =="vt ")
 		{
 			//Create a stream starting after the third character
 			istringstream str(line.substr(3));

@@ -14,7 +14,6 @@ public:
 	void draw(vec3 currPos, vec3 scaling, vec3 rotAx, float rotAm, mat4* camMat);
 	vector<vec3> getVert();
 
-private:
 	static const int NUMFLOATS = 8;
 	GLuint vbo;
 	GLuint vao;

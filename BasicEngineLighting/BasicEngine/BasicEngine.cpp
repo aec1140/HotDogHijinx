@@ -70,7 +70,7 @@ int initialize()
 
 	//Create Model entity
 	monkey = new Shape("Dog.obj", "ween.png", result);
-	plane = new Shape("plane.obj", "tile.jpg", result);
+	plane = new Shape("newPlane.obj", "tile.jpg", result);
 	
 
 	p = new Player(monkey, vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f), 0.0f);

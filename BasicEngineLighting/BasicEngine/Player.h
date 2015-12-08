@@ -13,5 +13,6 @@ public:
 private:
 	Camera* cam;
 	vec3 center;
+	float maxSpeed = 0.01f;
 };
 
